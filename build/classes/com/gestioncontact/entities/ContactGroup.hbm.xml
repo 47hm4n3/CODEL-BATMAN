@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gestioncontact.entities">
+  <class name="ContactGroup" table="Group_Table">
+<!--   <cache usage="read-write"/> -->
+  	 <id name="id" type="long" column="ID_GROUP" >
+   		<generator class="increment"/>
+  	 </id>
+  	<version name="version" access="field"  column="VERSION"/>
+	<property name="groupName" column="GNAME"/>
+	<set name="contacts" table="TJ_Contact_Groups" lazy="false">
+		<key column="ID_GROUP" />
+		<many-to-many class="Contact" column="ID_CONTACT" lazy="false"/>
+	</set>
+	<many-to-one name="user" column="ID_USER" not-null="true"/>
+  </class>
+</hibernate-mapping>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-	import="java.util.List, com.sar2016.entities.Contact, com.sar2016.entities.Enterprise"
+	import="java.util.List,com.gestioncontact.entities.Contact,com.gestioncontact.entities.Enterprise"
 %>
 <!DOCTYPE html>
 <!--

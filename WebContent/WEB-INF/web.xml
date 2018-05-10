@@ -8,7 +8,7 @@
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.LoginServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -18,7 +18,7 @@
     <description></description>
     <display-name>RegisterServlet</display-name>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.RegisterServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.RegisterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
@@ -28,7 +28,7 @@
     <description></description>
     <display-name>AddContactServlet</display-name>
     <servlet-name>AddContactServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.AddContactServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.AddContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddContactServlet</servlet-name>
@@ -38,7 +38,7 @@
     <description></description>
     <display-name>AddContactGroupServlet</display-name>
     <servlet-name>AddContactGroupServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.AddContactGroupServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.AddContactGroupServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddContactGroupServlet</servlet-name>
@@ -48,7 +48,7 @@
     <description></description>
     <display-name>UpdateContactServlet</display-name>
     <servlet-name>UpdateContactServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.UpdateContactServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.UpdateContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateContactServlet</servlet-name>
@@ -58,7 +58,7 @@
     <description></description>
     <display-name>ResearchContactServlet</display-name>
     <servlet-name>ResearchContactServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.ResearchContactServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.ResearchContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ResearchContactServlet</servlet-name>
@@ -68,7 +68,7 @@
     <description></description>
     <display-name>ResearchAllServlet</display-name>
     <servlet-name>ResearchAllServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.ResearchAllServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.ResearchAllServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ResearchAllServlet</servlet-name>
@@ -78,7 +78,7 @@
     <description></description>
     <display-name>AddAddressServlet</display-name>
     <servlet-name>AddAddressServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.AddAddressServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.AddAddressServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddAddressServlet</servlet-name>
@@ -88,7 +88,7 @@
     <description></description>
     <display-name>AddEnterpriseServlet</display-name>
     <servlet-name>AddEnterpriseServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.AddEnterpriseServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.AddEnterpriseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddEnterpriseServlet</servlet-name>
@@ -98,7 +98,7 @@
     <description></description>
     <display-name>AddPhoneNumberServlet</display-name>
     <servlet-name>AddPhoneNumberServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.AddPhoneNumberServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.AddPhoneNumberServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AddPhoneNumberServlet</servlet-name>
@@ -108,7 +108,7 @@
     <description></description>
     <display-name>ProfileServlet</display-name>
     <servlet-name>ProfileServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.ProfileServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.ProfileServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
@@ -118,7 +118,7 @@
     <description></description>
     <display-name>DeleteContactServlet</display-name>
     <servlet-name>DeleteContactServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.DeleteContactServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.DeleteContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DeleteContactServlet</servlet-name>
@@ -128,7 +128,7 @@
     <description></description>
     <display-name>ImportContactServlet</display-name>
     <servlet-name>ImportContactServlet</servlet-name>
-    <servlet-class>com.sar2016.servlets.ImportContactServlet</servlet-class>
+    <servlet-class>com.gestioncontact.servlets.ImportContactServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ImportContactServlet</servlet-name>

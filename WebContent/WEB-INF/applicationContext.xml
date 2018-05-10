@@ -12,9 +12,9 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    	<property name="url" value="jdbc:mysql://localhost/agenda" />
+    	<property name="url" value="jdbc:mysql://localhost:3306/agenda" />
     	<property name="username" value="root" />
-    	<property name="password" value="" />
+    	<property name="password" value="toor" />
     	<property name="initialSize" value="3" />
     	<property name="maxActive" value="10" />
 	</bean>
@@ -34,51 +34,51 @@
         </property>
         
    	</bean>
-    <bean  id="Contact" class="com.sar2016.entities.Contact" scope="prototype">
+    <bean  id="Contact" class="com.gestioncontact.entities.Contact" scope="prototype">
     </bean>
-    <bean  id="PhoneNumber" class="com.sar2016.entities.PhoneNumber" scope="prototype">
+    <bean  id="PhoneNumber" class="com.gestioncontact.entities.PhoneNumber" scope="prototype">
     </bean>
-    <bean  id="Address" class="com.sar2016.entities.Address" scope="prototype">
+    <bean  id="Address" class="com.gestioncontact.entities.Address" scope="prototype">
     </bean>
-    <bean  id="Enterprise" class="com.sar2016.entities.Enterprise" scope="prototype">
+    <bean  id="Enterprise" class="com.gestioncontact.entities.Enterprise" scope="prototype">
     </bean>
-    <bean  id="ContactGroup" class="com.sar2016.entities.ContactGroup" scope="prototype">
+    <bean  id="ContactGroup" class="com.gestioncontact.entities.ContactGroup" scope="prototype">
     </bean>
-    <bean  id="User" class="com.sar2016.entities.User" scope="prototype">
+    <bean  id="User" class="com.gestioncontact.entities.User" scope="prototype">
     </bean>
-   	<bean id="ContactGroupDAO" class="com.sar2016.dao.ContactGroupDAO">
+   	<bean id="ContactGroupDAO" class="com.gestioncontact.dao.ContactGroupDAO">
    		<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-  	<bean id="PhoneNumberDAO" class="com.sar2016.dao.PhoneNumberDAO">
+  	<bean id="PhoneNumberDAO" class="com.gestioncontact.dao.PhoneNumberDAO">
   		<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-  	<bean id="AddressDAO" class="com.sar2016.dao.AddressDAO">
+  	<bean id="AddressDAO" class="com.gestioncontact.dao.AddressDAO">
   		<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-	<bean id="ContactDAO" class="com.sar2016.dao.ContactDAO">
+	<bean id="ContactDAO" class="com.gestioncontact.dao.ContactDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-    <bean id="EnterpriseDAO" parent="ContactDAO" class="com.sar2016.dao.EnterpriseDAO">
+    <bean id="EnterpriseDAO" parent="ContactDAO" class="com.gestioncontact.dao.EnterpriseDAO">
   	</bean>
-  	<bean id="UserDAO" class="com.sar2016.dao.UserDAO">
+  	<bean id="UserDAO" class="com.gestioncontact.dao.UserDAO">
    		<property name="sessionFactory" ref="sessionFactory" />
   	</bean>
-  	<bean id="AddressService" class="com.sar2016.services.AddressService">
+  	<bean id="AddressService" class="com.gestioncontact.services.AddressService">
   	<property name="dao" ref="AddressDAO"/>
   		</bean>
-  	<bean id="ContactService" class="com.sar2016.services.ContactService">
+  	<bean id="ContactService" class="com.gestioncontact.services.ContactService">
   	  	<property name="dao" ref="ContactDAO"/>
   	</bean>
-  	<bean id="ContactGroupService" class="com.sar2016.services.ContactGroupService">
+  	<bean id="ContactGroupService" class="com.gestioncontact.services.ContactGroupService">
   	  	<property name="dao" ref="ContactGroupDAO"/>
   	</bean>
-    <bean id="EnterpriseService" class="com.sar2016.services.EnterpriseService">
+    <bean id="EnterpriseService" class="com.gestioncontact.services.EnterpriseService">
   		<property name="dao" ref="EnterpriseDAO"/>
   	</bean>
-  	<bean id="PhoneNumberService" class="com.sar2016.services.PhoneNumberService">
+  	<bean id="PhoneNumberService" class="com.gestioncontact.services.PhoneNumberService">
   	  	<property name="dao" ref="PhoneNumberDAO"/>
   	</bean>
-  	<bean id="UserService" class="com.sar2016.services.UserService">
+  	<bean id="UserService" class="com.gestioncontact.services.UserService">
   	  	<property name="dao" ref="UserDAO"/>
   	</bean>
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
@@ -99,7 +99,7 @@
         	</map>
     	</property>
 	</bean>
-	<bean id="hibernateStatisticsBean" class="com.sar2016.entities.HibernateStatisticsFactory">
+	<bean id="hibernateStatisticsBean" class="com.gestioncontact.entities.HibernateStatisticsFactory">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
     

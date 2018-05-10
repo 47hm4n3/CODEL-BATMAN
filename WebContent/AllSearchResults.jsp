@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="java.util.List, 
-    com.sar2016.entities.Contact, 
-    com.sar2016.entities.Address, 
-    com.sar2016.entities.ContactGroup, 
-    com.sar2016.entities.Enterprise, 
-    com.sar2016.entities.User, 
-    com.sar2016.entities.PhoneNumber, 
-    com.sar2016.dao.ContactDAO;"
+    import="java.util.List,com.gestioncontact.entities.Contact,com.gestioncontact.entities.Address,com.gestioncontact.entities.ContactGroup,com.gestioncontact.entities.Enterprise,com.gestioncontact.entities.User,com.gestioncontact.entities.PhoneNumber,com.gestioncontact.dao.ContactDAO;"
     %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
