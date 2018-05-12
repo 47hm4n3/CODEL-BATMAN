@@ -3,12 +3,31 @@ package com.gestioncontact.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Contact {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 	private int version;
 	String firstName, lastName, nickName, email;
 	Address address;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+	@JoinTable (joinColumns = {@JoinColumn},
+		       inverseJoinColumns = {@JoinColumn})
 	private Set<ContactGroup> books = new HashSet<ContactGroup>();
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true, mappedBy = "contact")
 	private Set<PhoneNumber> profiles = new HashSet<PhoneNumber>();
 	private User user;
 	

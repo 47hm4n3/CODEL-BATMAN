@@ -10,97 +10,108 @@
       http://www.springframework.org/schema/tx
       http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    	<property name="url" value="jdbc:mysql://localhost:3306/agenda" />
-    	<property name="username" value="root" />
-    	<property name="password" value="toor" />
-    	<property name="initialSize" value="3" />
-    	<property name="maxActive" value="10" />
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/agenda" />
+		<property name="username" value="root" />
+		<property name="password" value="toor" />
+<!-- 		<property name="initialSize" value="3" /> -->
+<!-- 		<property name="maxActive" value="10" /> -->
 	</bean>
-  	
-  	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-  	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
-  	
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
-        <property name="hibernateProperties" >
-        <props>
-        <prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
-        <prop key="hibernate.show.sql">true</prop>
-        <prop key="hibernate.hbm2ddl.auto">update</prop>
-        <prop key="hibernate.generate_statistics">true</prop>
-        </props>
-        </property>
-        
-   	</bean>
-    <bean  id="Contact" class="com.gestioncontact.entities.Contact" scope="prototype">
-    </bean>
-    <bean  id="PhoneNumber" class="com.gestioncontact.entities.PhoneNumber" scope="prototype">
-    </bean>
-    <bean  id="Address" class="com.gestioncontact.entities.Address" scope="prototype">
-    </bean>
-    <bean  id="Enterprise" class="com.gestioncontact.entities.Enterprise" scope="prototype">
-    </bean>
-    <bean  id="ContactGroup" class="com.gestioncontact.entities.ContactGroup" scope="prototype">
-    </bean>
-    <bean  id="User" class="com.gestioncontact.entities.User" scope="prototype">
-    </bean>
-   	<bean id="ContactGroupDAO" class="com.gestioncontact.dao.ContactGroupDAO">
-   		<property name="sessionFactory" ref="sessionFactory" />
-  	</bean>
-  	<bean id="PhoneNumberDAO" class="com.gestioncontact.dao.PhoneNumberDAO">
-  		<property name="sessionFactory" ref="sessionFactory" />
-  	</bean>
-  	<bean id="AddressDAO" class="com.gestioncontact.dao.AddressDAO">
-  		<property name="sessionFactory" ref="sessionFactory" />
-  	</bean>
-	<bean id="ContactDAO" class="com.gestioncontact.dao.ContactDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-  	</bean>
-    <bean id="EnterpriseDAO" parent="ContactDAO" class="com.gestioncontact.dao.EnterpriseDAO">
-  	</bean>
-  	<bean id="UserDAO" class="com.gestioncontact.dao.UserDAO">
-   		<property name="sessionFactory" ref="sessionFactory" />
-  	</bean>
-  	<bean id="AddressService" class="com.gestioncontact.services.AddressService">
-  	<property name="dao" ref="AddressDAO"/>
-  		</bean>
-  	<bean id="ContactService" class="com.gestioncontact.services.ContactService">
-  	  	<property name="dao" ref="ContactDAO"/>
-  	</bean>
-  	<bean id="ContactGroupService" class="com.gestioncontact.services.ContactGroupService">
-  	  	<property name="dao" ref="ContactGroupDAO"/>
-  	</bean>
-    <bean id="EnterpriseService" class="com.gestioncontact.services.EnterpriseService">
-  		<property name="dao" ref="EnterpriseDAO"/>
-  	</bean>
-  	<bean id="PhoneNumberService" class="com.gestioncontact.services.PhoneNumberService">
-  	  	<property name="dao" ref="PhoneNumberDAO"/>
-  	</bean>
-  	<bean id="UserService" class="com.gestioncontact.services.UserService">
-  	  	<property name="dao" ref="UserDAO"/>
-  	</bean>
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
-        <property name="sessionFactory" ref="sessionFactory"/>
-        <property name="checkWriteOperations" value="false"/>
-    </bean>
-    
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-    
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-	<bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
-    	<property name="beans">
-       		<map>
-            	<entry key="Hibernate:application=Statistics" value-ref="hibernateStatisticsBean"/>
-        	</map>
-    	</property>
-	</bean>
-	<bean id="hibernateStatisticsBean" class="com.gestioncontact.entities.HibernateStatisticsFactory">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-    
-</beans>
+
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
+
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+			<property name="hibernateProperties">
+				<props>
+					<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<prop key="hibernate.show.sql">true</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.generate_statistics">true</prop>
+				</props>
+			</property>
+
+		</bean>
+		<bean id="Contact" class="com.gestioncontact.entities.Contact"
+			scope="prototype">
+		</bean>
+		<bean id="PhoneNumber" class="com.gestioncontact.entities.PhoneNumber"
+			scope="prototype">
+		</bean>
+		<bean id="Address" class="com.gestioncontact.entities.Address"
+			scope="prototype">
+		</bean>
+		<bean id="Enterprise" class="com.gestioncontact.entities.Enterprise"
+			scope="prototype">
+		</bean>
+		<bean id="ContactGroup" class="com.gestioncontact.entities.ContactGroup"
+			scope="prototype">
+		</bean>
+		<bean id="User" class="com.gestioncontact.entities.User" scope="prototype">
+		</bean>
+		<bean id="ContactGroupDAO" class="com.gestioncontact.dao.ContactGroupDAO">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="PhoneNumberDAO" class="com.gestioncontact.dao.PhoneNumberDAO">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="AddressDAO" class="com.gestioncontact.dao.AddressDAO">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="ContactDAO" class="com.gestioncontact.dao.ContactDAO">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="EnterpriseDAO" parent="ContactDAO"
+			class="com.gestioncontact.dao.EnterpriseDAO">
+		</bean>
+		<bean id="UserDAO" class="com.gestioncontact.dao.UserDAO">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="AddressService" class="com.gestioncontact.services.AddressService">
+			<property name="dao" ref="AddressDAO" />
+		</bean>
+		<bean id="ContactService" class="com.gestioncontact.services.ContactService">
+			<property name="dao" ref="ContactDAO" />
+		</bean>
+		<bean id="ContactGroupService" class="com.gestioncontact.services.ContactGroupService">
+			<property name="dao" ref="ContactGroupDAO" />
+		</bean>
+		<bean id="EnterpriseService" class="com.gestioncontact.services.EnterpriseService">
+			<property name="dao" ref="EnterpriseDAO" />
+		</bean>
+		<bean id="PhoneNumberService" class="com.gestioncontact.services.PhoneNumberService">
+			<property name="dao" ref="PhoneNumberDAO" />
+		</bean>
+		<bean id="UserService" class="com.gestioncontact.services.UserService">
+			<property name="dao" ref="UserDAO" />
+		</bean>
+		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+			<property name="sessionFactory" ref="sessionFactory" />
+			<property name="checkWriteOperations" value="false" />
+		</bean>
+
+		<tx:annotation-driven transaction-manager="transactionManager" />
+
+		<bean id="transactionManager"
+			class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+
+		<bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
+			<property name="beans">
+				<map>
+					<entry key="Hibernate:application=Statistics" value-ref="hibernateStatisticsBean" />
+				</map>
+			</property>
+		</bean>
+		<bean id="hibernateStatisticsBean" class="com.gestioncontact.entities.HibernateStatisticsFactory">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+
+	</beans>
