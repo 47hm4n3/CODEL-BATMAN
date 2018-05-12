@@ -4,37 +4,256 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-</head>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="128124732452-h8ja44bqta91s95ui0empsgde5nj122i.apps.googleusercontent.com">
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<style>
+/*
+/* Created by Filipe Pina
+ * Specific styles of signin, register, component
+ */
+/*
+ * General styles
+ */
+
+body, html{
+     height: 100%;
+ 	background-repeat: no-repeat;
+ 	background-color: #d3d3d3;
+ 	font-family: 'Oxygen', sans-serif;
+}
+
+.main{
+ 	margin-top: 70px;
+}
+
+h1.title { 
+	font-size: 50px;
+	font-weight: 400; 
+}
+
+hr{
+	width: 10%;
+	color: #fff;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+
+.main-login{
+ 	background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.main-center{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 330px;
+    padding: 40px 40px;
+
+}
+
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 11px;
+	text-align: center;
+}
+</style>
 <body>
-	<form method="post" action="LoginServlet" class="col-md-12 text-center">
-		<div class="col-md-12">
-			<div>
-				<div><h2>Voici un premier exemple avec les servlets.</h2></div>	
-			</div>
-			<div>
-				<div>
-					<label for="login">Name : </label>
-				</div>
-				<div>
-					<input type="text" name="name" />
-				</div>
-			</div>
-			
-			<div>
-				<div>
-					<label for="password">MDP : </label>
-				</div>
-				<div>
-					<input type="password" name="password" />
-				</div>
-			</div>
-			<div>
-				<div>
-					<button type="submit">Submit</button>
-					<button type="reset">Reset</button>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      	document.getElementById("idtokeninput").value = '' + id_token ;
+      	document.getElementById("emailinput").value= '' + profile.getEmail();
+      	document.getElementById("firstname").value= '' + profile.getGivenName();
+      	document.getElementById("lastname").value= '' + profile.getFamilyName();
+      	document.getElementById("loginForm").submit();
+      }
+    </script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
+		<!-- Website CSS style -->
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+		<!-- Website Font style -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+
+		<title>Admin</title>
+	</head>
+	<body>
+	<!-- LOGIN FORM -->
+		<div id="loginContainer" class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Login to Agenda</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form id="loginForm" class="form-horizontal" method="post" action="home">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Mail</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="email" class="form-control" name="name" id="emailinput"  placeholder="Enter your Mail"/>
+									<input type="hidden" name="first_name" id="firstname" />
+									<input type="hidden" name="last_name" id="lastname" />
+								</div>
+						</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">LOGIN</button>
+						</div>
+						
+				         <input id="idtokeninput" type="hidden" name="idtoken" />
+					</form>
+					<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Use Google</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<div class="g-signin2 text-center" data-onsuccess="onSignIn" data-theme="dark"></div>
+								</div>
+							</div>
+						</div>
+					<div class="login-register">
+				       <a id="registerButton" href="#">Sign-up</a>
+				    </div>
 				</div>
 			</div>
 		</div>
-	</form>
+
+	<div id="registerContainer" class="container" style="display:none;">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Sign-up to Agenda</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="register">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">First Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="first_name" id="first_name"  placeholder="Enter your First Name"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Last Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="last_name" id="last_name"  placeholder="Enter your Last Name"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+						</div>
+						<div class="login-register">
+				            <a id="loginButton" href="">Login</a>
+				         </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		$("#registerButton").on("click", function(){
+			$("#registerContainer").show();
+			$("#loginContainer").hide();
+		});
+		$("#loginButton").on("click", function(){
+			$("#registerContainer").hide();
+			$("#loginContainer").show();
+		});
+	</script>
 </body>
 </html>

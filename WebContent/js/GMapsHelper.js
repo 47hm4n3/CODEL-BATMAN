@@ -13,16 +13,20 @@ var GMapsHelper = {};
     GMapsHelper.async = false;
     GMapsHelper.callback = true;
     GMapsHelper.autocomplete = false;
-    GMapsHelper.context = null;
+    GMapsHelper.context = {};
 
     GMapsHelper.refTab = {
         "postal_code" : 'ADD_ZIPCODE',
         "country" : 'ADD_COUNTRY',
-        "locality" : 'ADD_CITY'
+        "locality" : 'ADD_CITY',
+        "street_number" : 'ADD_ST_NB',
+        "route" : "ADD_STREET",
     };
 
     GMapsHelper.init = function (context) {
 
+    	GMapsHelper.context = context;
+    	
         if(context.type == 'address')
             GMapsHelper.autocomplete = true;
 
@@ -41,24 +45,23 @@ var GMapsHelper = {};
         
     GMapsHelper.generateAPICall = function (){
 		/*This is meant to compare existing gmaps calls and adapt to them, in case there's multiple GMapsHelper.init calls with different parameters*/
-        var scriptEl = document.querySelector("script[src*='https://maps.googleapis.com/maps/api/js']");
+        /*var scriptEl = document.querySelector("script[src*='https://maps.googleapis.com/maps/api/js']");
         console.log(scriptEl.getAttribute('src'));
 		var curQueryElChunks = scriptEl.getAttribute('src').split("?")[1].split('&');
 		var curQueryEl = [];
 		for(k in curQueryElChunks){
 			var elDef = curQueryElChunks[k].split('=');
 			curQueryEl[elDef[0]] = elDef[1];
-		}
+		}*/
 		
 		var scriptElement = document.createElement('script');
 
         var queryEl = [];
         var srcStr = "https://maps.googleapis.com/maps/api/js?key="+GMapsHelper.APIKey;
-        if(GMapsHelper.autocomplete || (('libraries' in curQueryEl) && curQueryEl['libraries'] == 'places'))
+        if(GMapsHelper.autocomplete)
             queryEl['libraries'] = "places";
             //srcStr += "&libraries=places";
-        if(GMapsHelper.callback != null || ('callback' in curQueryEl))
-            queryEl['callback'] = GMapsHelper.callback
+        queryEl['callback'] = GMapsHelper.callback
             //srcStr += "&callback="+GMapsHelper.callback;
 
         for(k in queryEl)
@@ -69,6 +72,7 @@ var GMapsHelper = {};
     }
 
     GMapsHelper.genericCallBack = function () {
+    	var context = GMapsHelper.context;
         var mapOptions = {
             zoom: (context.zoom || GMapsHelper.default_zoom),
             center: new google.maps.LatLng(
@@ -82,8 +86,10 @@ var GMapsHelper = {};
         if(context.type == 'address'){
             GMapsHelper.initAddressSearch();
         }else {
-            if (context.marker)
+            if (context.marker){
                 GMapsHelper.addMarker(context.lat, context.lng);
+                
+            }
 
             if (context.type == "markedMap" && context.start && context.end) {
                 GMapsHelper.markedMap(context);
@@ -93,7 +99,6 @@ var GMapsHelper = {};
         
     /*AddressMap Initiliaze*/
     GMapsHelper.initAddressSearch = function () {
-
         var autocomplete = new google.maps.places.Autocomplete(
             (document.getElementById('autocomplete')), {
                 types: ['geocode']
@@ -125,24 +130,30 @@ var GMapsHelper = {};
                     var typeElem = tabElem.types[idxtypes];
                     var inputName = GMapsHelper.refTab[typeElem];
 
-                    if(inputName != null && typeElem != "street_number" && typeElem != "route")
+                    if(inputName != null){
                         $('.address-field[name="'+inputName+'"]').val(tabElem.long_name);
+                        console.log( $('.address-field[name="'+inputName+'"]').val());
+                    }
                     if(typeElem == "street_number")
-                        str_nb = tabElem.long_name;
-                    if(typeElem == "route")
-                        route = tabElem.long_name;
+                    	$('.address-field[name="ADD_ST_NB"]').val(tabElem.long_name);
+                    /*if(typeElem == "route")
+                        route = tabElem.long_name;*/
                 }
             }
 
-            $('.address-field[name="ADD_LINE_1"]').val(str_nb+' '+route);
-            $('#selectedAddress').html('<i class="fa fa-check" style="color: green;"></i> Adresse sélectionnée.');
+            /*$('.address-field[name="ADD_ST_NB"]').val(str_nb);
+            /*$('.address-field[name="ADD_LINE_1"]').val(str_nb+' '+route);
+            console.log($('.address-field[name="ADD_LINE_1"]').val());*/
+            $('#selectedAddress').show();
+            $("#selectedAddressInput").val($("#autocomplete").val());
+            $('#autocomplete').hide();
 
             GMapsHelper.initAddressMap(lat, lng);
         });
     }
 
     GMapsHelper.initAddressMap = function(lat, lng) {
-        $(document.getElementById('address-gmaps-wrapper')).show();
+        //$(document.getElementById('address-gmaps-wrapper')).show();
         google.maps.event.trigger(GMapsHelper.map, 'resize');
 
         GMapsHelper.deleteMarkers();
